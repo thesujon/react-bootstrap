@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+//import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import BootstrapTable from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 class Table extends Component {
-    constructor() {
-        super();
-        this.state = {
+    
+        state = {
             data: [
                 {
                     id: '1',
@@ -98,51 +98,39 @@ class Table extends Component {
                     phone: '91566686'
                 }
 
+            ],
+            columns: [{
+                dataField: 'id',
+                text: 'ID'
+            },
+            {
+                dataField: 'name',
+                text: 'Name'
+            },
+            {
+                dataField: 'address',
+                text: 'Address'
+            },{
+                dataField: 'phone',
+                text: 'Phone'
+            },
+            
+            
             ]
         }
-    }
+    
     render() {
         return (
             <div className="table-container" style={{marginTop: 50}}>
-                <h3>Person Info</h3>
-                <BootstrapTable data={this.state.data}>
-                    <TableHeaderColumn isKey={true}
-                    dataField='id'
-                    dataAlign='center'
-                    headerAlign='left'
-                    width='30'
-                    tdStyle={
-                        {backgroundColor: 'gray'}
-                    }>
-                    ID
-                    </TableHeaderColumn>
-
-                    <TableHeaderColumn 
-                    dataField='name' 
-                    dataAlign='center'
-                    headerAlign='center'
-                    width='20%'
-                    >
-                    Name
-                    </TableHeaderColumn>
-
-                    <TableHeaderColumn 
-                    dataField='address' 
-                    dataAlign='left'
-                    headerAlign='center'
-                    width='50%'
-                    >
-                    Address
-                    </TableHeaderColumn>
-                    <TableHeaderColumn 
-                    dataField='phone' 
-                    dataAlign='center'
-                    headerAlign='center'
-                    >
-                    Phone
-                    </TableHeaderColumn>
-                    
-                </BootstrapTable>
+                <h3>User List</h3>
+               <BootstrapTable 
+                striped
+                hover
+                keyField='id'
+                data={this.state.data}
+                columns={this.state.columns}
+                pagination={paginationFactory() }/> 
+                               
             </div>
         );
     }
